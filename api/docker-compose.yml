@@ -1,0 +1,17 @@
+version: '2'
+services:
+  mongolab:
+    image: mongo
+  web:
+    build: .
+    command: 'gulp serve'
+    volumes:
+        - ./:/app/user
+    working_dir: /app/user
+    environment:
+      PORT: 3000
+      MONGOLAB_URI: 'mongodb://mongolab:27017'
+      APP_SECRET: 'very secret key!'
+      ORIGINS_WHITELIST: 'http://localhost:4200'
+    ports:
+      - "3000:3000"

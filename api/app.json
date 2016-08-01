@@ -1,0 +1,8 @@
+{
+  "name": "kamrusepa-api",
+  "description": "kamrusepa rest api",
+  "image": "heroku/nodejs",
+  "addons": [
+    "mongolab:sandbox"
+  ]
+}
