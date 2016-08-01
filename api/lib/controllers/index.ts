@@ -1,1 +1,2 @@
-export * from './home-controller';
+export * from './home';
+export * from './donors';

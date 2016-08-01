@@ -44,6 +44,7 @@
     "inversify-dts": "^1.5.0",
     "jshint": "^2.9.2",
     "mocha": "^3.0.0",
+    "ts-node": "^1.2.2",
     "tslint": "^3.14.0",
     "typemoq": "^0.3.2"
   }

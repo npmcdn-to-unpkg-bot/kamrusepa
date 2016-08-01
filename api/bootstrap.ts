@@ -8,7 +8,7 @@ import { KernelModule } from 'inversify';
 
 import { GetMongoDB } from './lib/commands';
 
-import { } from './lib/queries';
+import { QueryDonors } from './lib/queries';
 
 import { HomeController } from './lib/controllers';
 
@@ -23,7 +23,7 @@ let controllers = new KernelModule((bind) => {
 });
 
 let queries = new KernelModule((bind) => {
-    
+    bind<QueryDonors>(TYPES.QueryDonors).to(QueryDonors);
 });
 
 let commands = new KernelModule((bind) => {

@@ -17,7 +17,7 @@ export class HomeController {
     }
 
      @Get('/')
-    public get(): any {
+    public get() {
 
         return {
             "version": "1.0.0",

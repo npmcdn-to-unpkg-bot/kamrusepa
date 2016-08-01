@@ -1,7 +1,6 @@
 {
   "globalDependencies": {
     "body-parser": "registry:dt/body-parser#0.0.0+20160619023215",
-    "chai": "registry:dt/chai#3.4.0+20160601211834",
     "express": "registry:dt/express#4.0.0+20160708185218",
     "express-jwt": "registry:dt/express-jwt#0.0.0+20160629014920",
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160715232503",
@@ -14,6 +13,7 @@
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
   },
   "dependencies": {
+    "chai": "registry:npm/chai#3.5.0+20160723033700",
     "chai-as-promised": "registry:npm/chai-as-promised#5.1.0+20160310030142",
     "cors": "registry:npm/cors#2.7.0+20160723033700",
     "es6-promise": "registry:npm/es6-promise#3.0.0+20160723033700",
