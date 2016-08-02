@@ -6,11 +6,15 @@ import 'reflect-metadata';
 import { Controller, InversifyExpressServer, TYPE } from 'inversify-express-utils';
 import { KernelModule } from 'inversify';
 
-import { GetMongoDB } from './lib/commands';
+import { GetMongoDB,
+    CreateAccount,
+    CreateDonor,
+    UpdateDonor,
+    DeleteDonor } from './lib/commands';
 
-import { QueryDonors } from './lib/queries';
+import { QueryDonors, GetDonor } from './lib/queries';
 
-import { HomeController } from './lib/controllers';
+import { HomeController, DonorsController } from './lib/controllers';
 
 import { TAGS } from './lib/tags';
 import { TYPES } from './lib/types';
@@ -20,14 +24,19 @@ import { Config } from './lib/models';
 
 let controllers = new KernelModule((bind) => {
     bind<Controller>(TYPE.Controller).to(HomeController).whenTargetNamed(TAGS.HomeController);
+    bind<Controller>(TYPE.Controller).to(DonorsController).whenTargetNamed(TAGS.DonorsController);
 });
 
 let queries = new KernelModule((bind) => {
     bind<QueryDonors>(TYPES.QueryDonors).to(QueryDonors);
+    bind<GetDonor>(TYPES.GetDonor).to(GetDonor);
 });
 
 let commands = new KernelModule((bind) => {
-    
+    bind<CreateAccount>(TYPES.CreateAccount).to(CreateAccount);
+    bind<CreateDonor>(TYPES.CreateDonor).to(CreateDonor);
+    bind<UpdateDonor>(TYPES.UpdateDonor).to(UpdateDonor);
+    bind<DeleteDonor>(TYPES.DeleteDonor).to(DeleteDonor);
 });
 
 let infra = new KernelModule((bind) => {

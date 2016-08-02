@@ -3,4 +3,9 @@ export const TYPES = {
     GetMongoDB: Symbol('GetMongoDB'),
     Config: Symbol('Config'),
     QueryDonors: Symbol('QueryDonors'),
+    CreateDonor: Symbol('CreateDonor'),
+    CreateAccount: Symbol('CreateAccount'),
+    UpdateDonor: Symbol('UpdateDonor'),
+    DeleteDonor: Symbol('DeleteDonor'),
+    GetDonor: Symbol('GertDonor')
 };

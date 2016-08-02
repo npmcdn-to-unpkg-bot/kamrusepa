@@ -38,6 +38,11 @@ export class QueryDonors implements Query<Promise<[Donor]>> {
     }
 
     public exec(): Promise<[Donor]> {
+        if(!this.coordinates || this.coordinates.length !== 2) 
+            return Promise.reject('Coordinate cannot be undefined or mpety and must be a lat long array.');
+        if(this.distance <= 0)
+            return Promise.reject('Distance must be greater than zero.');
+
         return new Promise<[Donor]>((resolver, reject) => {
             this._getMongo.exec().then((db: Db) => {
                 let result: [Donor] = <[Donor]>[];
@@ -49,11 +54,9 @@ export class QueryDonors implements Query<Promise<[Donor]>> {
                         }
                     }
                 }).forEach((item) => {
-                    console.log(item);
                     result.push(item);
                 }, (err) => {
                     if(err) return reject(err);
-                    
                     resolver(result);
                 });
 

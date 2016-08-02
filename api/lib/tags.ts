@@ -1,3 +1,4 @@
 export const TAGS = {
-    HomeController: 'HomeController'
+    HomeController: 'HomeController',
+    DonorsController: 'DonorsController'
 };
