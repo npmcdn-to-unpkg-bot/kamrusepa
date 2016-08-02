@@ -7,5 +7,6 @@ export const TYPES = {
     CreateAccount: Symbol('CreateAccount'),
     UpdateDonor: Symbol('UpdateDonor'),
     DeleteDonor: Symbol('DeleteDonor'),
-    GetDonor: Symbol('GertDonor')
+    GetDonor: Symbol('GertDonor'),
+    LoginUser: Symbol('LoginUser')
 };

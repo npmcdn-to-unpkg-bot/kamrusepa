@@ -10,11 +10,14 @@ import { GetMongoDB,
     CreateAccount,
     CreateDonor,
     UpdateDonor,
-    DeleteDonor } from './lib/commands';
+    DeleteDonor,
+    LoginUser } from './lib/commands';
 
 import { QueryDonors, GetDonor } from './lib/queries';
 
-import { HomeController, DonorsController } from './lib/controllers';
+import { HomeController,
+    DonorsController,
+    AccountController } from './lib/controllers';
 
 import { TAGS } from './lib/tags';
 import { TYPES } from './lib/types';
@@ -25,6 +28,7 @@ import { Config } from './lib/models';
 let controllers = new KernelModule((bind) => {
     bind<Controller>(TYPE.Controller).to(HomeController).whenTargetNamed(TAGS.HomeController);
     bind<Controller>(TYPE.Controller).to(DonorsController).whenTargetNamed(TAGS.DonorsController);
+    bind<Controller>(TYPE.Controller).to(AccountController).whenTargetNamed(TAGS.AccountController);
 });
 
 let queries = new KernelModule((bind) => {
@@ -37,6 +41,7 @@ let commands = new KernelModule((bind) => {
     bind<CreateDonor>(TYPES.CreateDonor).to(CreateDonor);
     bind<UpdateDonor>(TYPES.UpdateDonor).to(UpdateDonor);
     bind<DeleteDonor>(TYPES.DeleteDonor).to(DeleteDonor);
+    bind<LoginUser>(TYPES.LoginUser).to(LoginUser);
 });
 
 let infra = new KernelModule((bind) => {
