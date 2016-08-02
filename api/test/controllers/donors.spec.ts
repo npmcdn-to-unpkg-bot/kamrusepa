@@ -54,8 +54,9 @@ describe('Donors controller', () => {
             }]
 
             request = <Request>{
-                params: {
-                    coordinates: [-73.856077, 40.848447],
+                query: {
+                    lat: -73.856077,
+                    long: 40.848447,
                     distance: 5 / 3963.2
                 }
             };
@@ -75,8 +76,9 @@ describe('Donors controller', () => {
             beforeEach(() => {
 
                 request = <Request>{
-                    params: {
-                        coordinates: [-73.856077, 40.848447],
+                    query: {
+                        lat: -73.856077,
+                        long: 40.848447,
                         distance: undefined
                     }
                 };
@@ -103,8 +105,7 @@ describe('Donors controller', () => {
             beforeEach(() => {
 
                 request = <Request>{
-                    params: {
-                        coordinates: undefined,
+                    query: {
                         distance: 5 / 3963.2
                     }
                 };

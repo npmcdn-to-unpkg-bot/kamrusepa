@@ -30,9 +30,15 @@ server.setConfig((app) => {
 
         }
     }));
-    app.use(jwt({ secret: config.appSecret})
-    .unless({path: ['/api/account/login', '/setup', '/']}));
-    
+    app.use(jwt({ secret: config.appSecret })
+        .unless({
+            path: ['/api/account/login', '/setup', '/',
+                {
+                    url: '/api/donors',
+                    methods: ['GET']
+                }]
+        }));
+
 });
 
 let app = server.build();

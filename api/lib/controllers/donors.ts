@@ -49,11 +49,12 @@ export class DonorsController {
 
     @Get('/')
     public query(request: Request, response: Response): Promise<[Donor]> | Response {
-        if (!request.params.coordinates || !request.params.distance)
+        if (!request.query.lat || !request.query.long || !request.query.distance)
             return response.status(400).send({ message: 'Bad data.' });
-
-        this._queryDonors.coordinates = request.params.coordinates;
-        this._queryDonors.distance = request.params.distance;
+        
+        this._queryDonors.coordinates = [parseFloat(request.query.lat),parseFloat(request.query.long)] ;
+        this._queryDonors.distance = parseInt(request.query.distance);
+        
         return this._queryDonors.exec();
     }
 
