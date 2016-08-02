@@ -69,13 +69,14 @@ export class DonorsController {
             username: donor.email,
             password: shortid.generate()
         };
+        let password = account.password;
 
         this._createAccount.account = account;
         return this._createAccount.exec().then(savedAccount => {
             donor.account = savedAccount._id;
             this._createDonor.donor = donor;
             return this._createDonor.exec().then(savedDonor => {
-                savedDonor.generetedPassword = account.password;
+                savedDonor.generetedPassword = password;
                 return Promise.resolve(savedDonor);
             })
         });

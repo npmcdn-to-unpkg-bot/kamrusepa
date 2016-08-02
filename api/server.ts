@@ -35,7 +35,7 @@ server.setConfig((app) => {
             path: ['/api/account/login', '/setup', '/',
                 {
                     url: '/api/donors',
-                    methods: ['GET']
+                    methods: ['GET', 'POST']
                 }]
         }));
 

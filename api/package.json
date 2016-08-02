@@ -10,7 +10,6 @@
   "scripts": {
     "start": "node deploy/server.js",
     "prepublish": "typings install",
-    "watch": "webpack --watch",
     "test": "gulp test"
   },
   "keywords": [],
