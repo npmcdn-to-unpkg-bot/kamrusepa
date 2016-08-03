@@ -30,19 +30,22 @@ export class GetDonor implements Query<Promise<Donor>> {
     }
 
     public exec(): Promise<Donor> {
-        if(!this.id) return Promise.reject('Id cannot be undefined or empty.');
+        if (!this.id) {
+            return Promise.reject('Id cannot be undefined or empty.');
+        }
         return new Promise<Donor>((resolver, reject) => {
             this._getMongo.exec().then((db: Db) => {
-                let result: [Donor] = <[Donor]>[];
                 let query = {
-                    "_id": new ObjectID(this.id)
+                    _id: new ObjectID(this.id)
                 };
                 let donor: Donor = undefined;
 
                 db.collection('donors').find(query).limit(1).forEach((item) => {
                     donor = item;
                 }, (err) => {
-                    if (err) return reject(err);
+                    if (err) {
+                        return reject(err);
+                    }
                     resolver(donor);
                 });
 

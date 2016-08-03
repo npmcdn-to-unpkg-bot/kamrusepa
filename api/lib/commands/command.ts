@@ -1,5 +1,5 @@
 import { Promise } from 'es6-promise';
 
-export interface Command{
+export interface Command {
     exec(): Promise<any>;
 }

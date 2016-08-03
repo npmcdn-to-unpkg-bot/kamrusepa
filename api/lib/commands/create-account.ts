@@ -32,9 +32,10 @@ export class CreateAccount implements Command {
     }
 
     public exec(): Promise<any> {
-        if(!this.account || Object.keys(this.account).length === 0)
+        if (!this.account || Object.keys(this.account).length === 0) {
             return Promise.reject('Account cannot be undefined or empty.');
-            
+        }
+
         return this._getMongoDB.exec().then(db => {
             this.encryptPassword();
             return db.collection('accounts').insert(this.account)

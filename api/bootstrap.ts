@@ -3,7 +3,7 @@
 /// <reference path="./node_modules/inversify-dts/inversify-express-utils/inversify-express-utils.d.ts" />
 
 import 'reflect-metadata';
-import { Controller, InversifyExpressServer, TYPE } from 'inversify-express-utils';
+import { Controller, TYPE } from 'inversify-express-utils';
 import { KernelModule } from 'inversify';
 
 import { GetMongoDB,
@@ -50,4 +50,3 @@ let infra = new KernelModule((bind) => {
 });
 
 export { controllers, queries, commands, infra }
-

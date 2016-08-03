@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from 'inversify-express-utils';
+import { Controller, Post } from 'inversify-express-utils';
 import { injectable, inject } from 'inversify';
 import { Request, Response } from 'express';
 
@@ -26,8 +26,10 @@ export class AccountController {
         this._loginUser.exec()
             .then((token) => response.send(token))
             .catch(err => {
-                if (err === "invalid_user") return response.status(401).send({ message: 'Invalid credentials.' });
+                if (err === 'invalid_user') {
+                    return response.status(401).send({ message: 'Invalid credentials.' });
+                }
                 response.status(502).send(err.message || 'Server error.');
-            })
+            });
     }
 }

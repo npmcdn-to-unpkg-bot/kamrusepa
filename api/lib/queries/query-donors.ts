@@ -1,5 +1,5 @@
 import { injectable, inject } from 'inversify';
-import { Db, ObjectID } from 'mongodb';
+import { Db } from 'mongodb';
 import { Query } from './';
 import { GetMongoDB } from '../commands';
 
@@ -38,17 +38,19 @@ export class QueryDonors implements Query<Promise<[Donor]>> {
     }
 
     public exec(): Promise<[Donor]> {
-        if(!this.coordinates || this.coordinates.length !== 2) 
+        if (!this.coordinates || this.coordinates.length !== 2) {
             return Promise.reject('Coordinate cannot be undefined or mpety and must be a lat long array.');
-        if(this.distance <= 0)
+        }
+        if (this.distance <= 0) {
             return Promise.reject('Distance must be greater than zero.');
+        }
 
         return new Promise<[Donor]>((resolver, reject) => {
             this._getMongo.exec().then((db: Db) => {
                 let result: [Donor] = <[Donor]>[];
 
                 db.collection('donors').find({
-                    "location": {
+                    location: {
                         $geoWithin: {
                             $centerSphere: [this.coordinates, this.distance]
                         }
@@ -56,7 +58,9 @@ export class QueryDonors implements Query<Promise<[Donor]>> {
                 }).forEach((item) => {
                     result.push(item);
                 }, (err) => {
-                    if(err) return reject(err);
+                    if (err) {
+                        return reject(err);
+                    }
                     resolver(result);
                 });
 

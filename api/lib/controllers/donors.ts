@@ -20,7 +20,7 @@ export class DonorsController {
     private _createAccount: CreateAccount;
     private _updateDonor: UpdateDonor;
     private _deleteDonor: DeleteDonor;
-    private _getDonor: GetDonor
+    private _getDonor: GetDonor;
 
     /**
      *
@@ -49,20 +49,22 @@ export class DonorsController {
 
     @Get('/')
     public query(request: Request, response: Response): Promise<[Donor]> | Response {
-        if (!request.query.lat || !request.query.long || !request.query.distance)
+        if (!request.query.lat || !request.query.long || !request.query.distance) {
             return response.status(400).send({ message: 'Bad data.' });
-        
-        this._queryDonors.coordinates = [parseFloat(request.query.lat),parseFloat(request.query.long)] ;
-        this._queryDonors.distance = parseInt(request.query.distance);
-        
+        }
+
+        this._queryDonors.coordinates = [parseFloat(request.query.lat), parseFloat(request.query.long)] ;
+        this._queryDonors.distance = parseInt(request.query.distance, 10);
+
         return this._queryDonors.exec();
     }
 
     @Post('/')
     public post(request: Request, response: Response): Promise<any> | Response {
-        //TODO: Validate body input
-        if (!request.body)
+        // TODO: Validate body input
+        if (!request.body) {
             return response.status(400).send({ message: 'Bad data.' });
+        }
 
         let donor = <Donor>request.body;
         let account = <Account>{
@@ -78,14 +80,16 @@ export class DonorsController {
             return this._createDonor.exec().then(savedDonor => {
                 savedDonor.generetedPassword = password;
                 return Promise.resolve(savedDonor);
-            })
+            });
         });
     }
 
     @Put('/:id')
     public put(request: Request, response: Response): Promise<[Donor]> | Response {
-        if (!request.body)
+        if (!request.body) {
             return response.status(400).send({ message: 'Bad data.' });
+        }
+
         let donor = <Donor>request.body;
 
         this._updateDonor.donor = donor;

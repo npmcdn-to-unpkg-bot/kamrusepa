@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Controller, InversifyExpressServer, TYPE } from 'inversify-express-utils';
+import { InversifyExpressServer } from 'inversify-express-utils';
 import { Kernel } from 'inversify';
 import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';

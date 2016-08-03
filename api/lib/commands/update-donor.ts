@@ -1,5 +1,5 @@
 import { injectable, inject } from 'inversify';
-import { MongoClient, Server, Db, ObjectID, UpdateWriteOpResult } from 'mongodb';
+import { ObjectID, UpdateWriteOpResult } from 'mongodb';
 import { Promise } from 'es6-promise';
 
 import { Command, GetMongoDB } from './';
@@ -31,14 +31,17 @@ export class UpdateDonor implements Command {
     }
 
     public exec(): Promise<any> {
-        if (!this.donor || Object.keys(this.donor).length === 0)
+        if (!this.donor || Object.keys(this.donor).length === 0) {
             return Promise.reject('Donor cannot be undefined or empty.');
+        }
 
         return this._getMongoDB.exec().then(db => {
             let query = { _id: new ObjectID(this.donor._id) };
             return db.collection('donors').updateOne(query, this.donor)
                 .then((value: UpdateWriteOpResult) => {
-                    if(value.result.ok) return Promise.resolve(this.donor);
+                    if (value.result.ok) {
+                        return Promise.resolve(this.donor);
+                    }
                     Promise.reject('Donor was not updated.');
                 });
         });

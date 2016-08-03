@@ -30,8 +30,9 @@ export class DeleteDonor implements Command {
     }
 
     public exec(): Promise<any> {
-        if (!this.donorId)
+        if (!this.donorId) {
             return Promise.reject('Donorid cannot be undefined or empty.');
+        }
 
         return this._getMongoDB.exec().then(db => {
             let query = {
@@ -39,7 +40,9 @@ export class DeleteDonor implements Command {
             };
             return db.collection('donors').deleteOne(query)
                 .then((value: DeleteWriteOpResultObject) => {
-                    if(value.result.ok) return Promise.resolve(this.donorId);
+                    if (value.result.ok) {
+                        return Promise.resolve(this.donorId);
+                    }
                     return Promise.reject(`Cannot delete donor object #${this.donorId}.`);
                 });
         });

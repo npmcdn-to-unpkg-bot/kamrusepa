@@ -5,7 +5,7 @@ import { Db } from 'mongodb';
 
 import * as jwt from 'jsonwebtoken';
 import * as _ from 'lodash';
-import * as crypto from "crypto";
+import * as crypto from 'crypto';
 
 import { Command, GetMongoDB } from './';
 import { Account, Config } from '../models';
@@ -34,9 +34,10 @@ export class LoginUser implements Command {
     }
 
     public exec(): Promise<any> {
-        if(!this.account || Object.keys(this.account).length === 0) 
+        if (!this.account || Object.keys(this.account).length === 0) {
             return Promise.reject('Account cannot be undefined or empty.');
-            
+        }
+
         return new Promise((resolver, reject) => {
             this._getMongoDB.exec().then((db: Db) => {
                 this._account.password = crypto.createHash('sha512')
@@ -44,11 +45,14 @@ export class LoginUser implements Command {
                     .digest('hex');
 
                 db.collection('users').findOne(this._account).then(user => {
-                    if (!user) return reject('invalid_account');
+                    if (!user) {
+                        return reject('invalid_account');
+                    }
+
                     jwt.sign(_.omit(user, 'password'),
                         this._config.appSecret,
                         {
-                            expiresIn: "2h"
+                            expiresIn: '2h'
                         }, (err, result) => {
                             resolver(result);
                         });

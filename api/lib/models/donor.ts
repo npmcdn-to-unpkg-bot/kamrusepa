@@ -1,6 +1,6 @@
 import { BloodGroup } from './';
 
-export interface Donor{
+export interface Donor {
     _id: string;
     firstName: string;
     lastName: string;
@@ -13,7 +13,7 @@ export interface Donor{
     account: string;
 }
 
-export interface Location{
+export interface Location {
     type: string;
     coordinates: [number];
 }

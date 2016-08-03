@@ -1,7 +1,7 @@
-export interface Config{
+export interface Config {
     appPort: number;
-    appSecret: string,
-    originsWhitelist: [string],
-    mongoUrl: string
-    env: string
+    appSecret: string;
+    originsWhitelist: [string];
+    mongoUrl: string;
+    env: string;
 }
