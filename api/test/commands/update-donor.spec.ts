@@ -1,15 +1,13 @@
 /// <reference path="../../node_modules/typemoq/typemoq.d.ts" />
 import 'reflect-metadata';
-import * as TypeMoq from "typemoq";
+import * as TypeMoq from 'typemoq';
 import { Promise } from 'es6-promise';
-import { Db, Server, Collection, UpdateWriteOpResult, ObjectID } from "mongodb";
+import { Db, Server, Collection, UpdateWriteOpResult, ObjectID } from 'mongodb';
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
-import { Kernel } from 'inversify';
 
 import { UpdateDonor, GetMongoDB } from '../../lib/commands';
 import { Donor, Location, BloodGroup } from '../../lib/models';
-import { TYPES } from '../../lib/types';
 
 const expect = chai.expect;
 chai.use(chaiAsPromised);
@@ -68,11 +66,11 @@ describe('Update donor command', () => {
         it('should return donor updated', () => {
 
             command.donor = donor;
-            
+
             return expect(command.exec()).to.eventually.be.eq(donor);
         });
 
-        
+
         describe('If donor is undefined', () => {
 
             it('should be rejected', () => {

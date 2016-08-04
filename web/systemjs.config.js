@@ -10,6 +10,7 @@
 
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+    '@angular2-material':         'node_modules/@angular2-material',
     'rxjs':                       'node_modules/rxjs'
   };
 
@@ -24,12 +25,22 @@
     'common',
     'compiler',
     'core',
+    'forms',
     'http',
     'platform-browser',
     'platform-browser-dynamic',
     'router',
     'router-deprecated',
     'upgrade',
+  ];
+
+  var ngMaterialPackageNames = [
+    'core',
+    'input',
+    'button',
+    'checkbox',
+    'progress-circle',
+    'card',
   ];
 
   // Individual files (~300 requests):
@@ -46,6 +57,12 @@
 
   // Add package entries for angular packages
   ngPackageNames.forEach(setPackageConfig);
+
+  function addPackge(pkgName){
+    packages['@angular2-material/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };
+  }
+  
+  ngMaterialPackageNames.forEach(addPackge);
 
   var config = {
     map: map,

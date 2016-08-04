@@ -1,6 +1,6 @@
 /// <reference path="../../node_modules/typemoq/typemoq.d.ts" />
 import 'reflect-metadata';
-import * as TypeMoq from "typemoq";
+import * as TypeMoq from 'typemoq';
 import { Promise } from 'es6-promise';
 import { Request, Response } from 'express';
 import { ObjectID } from 'mongodb';
@@ -330,7 +330,7 @@ describe('Donors controller', () => {
 
         describe('If id does not exist', () => {
             beforeEach(() => {
-                let donorId: string = 'invalid-id';
+                let donorId = 'invalid-id';
 
                 request = <Request>{
                     params: {

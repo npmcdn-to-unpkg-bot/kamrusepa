@@ -1,0 +1,44 @@
+<dialog class="mdl-dialog new-donor absolute-center" [attr.open]="isOpen ? 'true' : null">
+    <form #donorForm="ngForm" (submit)="save()">
+        <h4 class="mdl-dialog__title">Wanna be a donor?</h4>
+        <div class="mdl-dialog__content">
+
+            <div class="mdl-components__warning" *ngIf='errorMessages && errorMessages.length'>
+                <ul>
+                    <li *ngFor="#error of errorMessages">{{error}}</li>
+                </ul>
+            </div>
+
+            <div style="margin-top:20px">
+
+                <md-input placeholder="First name" name="firstName" [(ngModel)]="donor.firstName" style="width: 100%"
+                    required></md-input>
+                <md-input placeholder="Last name" name="lastName" style="width: 100%" [(ngModel)]="donor.lastName" required></md-input>
+                <md-input placeholder="Contact Number" pattern="^(00|\+)\d{2}\s\d{3}\s\d{4}\s\d{3}$" name="contactNumber" style="width: 100%" [(ngModel)]="donor.contactNumber" required></md-input>
+                <md-input placeholder="Email Address" name="emailAddress" style="width: 100%" [(ngModel)]="donor.email"
+                pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' required></md-input>
+
+                <div class="mdl-textfield mdl-js-textfield">
+                    <label>Blood Type:</label>
+                    <select name="bloodGroup" [(ngModel)]="donor.bloodGroup" required>
+                    <option value="A" selected>A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>    
+                    </select>
+
+                    <md-checkbox name="rh" color="primary" [(ngModel)]="donor.rh" [checked]="checked">
+                        Rh.
+                    </md-checkbox>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Save</button>
+            <button type="button" (click)="close()" class="mdl-button mdl-js-button mdl-button--raised" formnovalidate>Cancel</button>
+        </div>
+    </form>
+</dialog>
+<donor-saved></donor-saved>

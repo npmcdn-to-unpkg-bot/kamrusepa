@@ -1,0 +1,16 @@
+<dialog class="mdl-dialog new-donor absolute-center" [attr.open]="isOpen ? 'true' : null">
+    
+        <h4 class="mdl-dialog__title">Great! Now you are a donor too!</h4>
+        <div class="mdl-dialog__content">
+            <h5>Congratulations {{donor.lastName}}, {{donor.firstName}}. You succefully registered as a donor.</h5>
+            <p> You can access you profile in the following <a href="/donor/{{donor._id}}">link</a>.
+                <p> Username: <strong>{{donor.email}}</strong> <br> Password: <strong>{{donor.generatedPassword}}</strong>
+                </p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="" (click)="close()" class="mdl-button mdl-js-button mdl-button--raised" formnovalidate>
+            Close
+            </button>
+        </div>
+    
+</dialog>

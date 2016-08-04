@@ -1,19 +1,16 @@
 /// <reference path="../../node_modules/typemoq/typemoq.d.ts" />
 import 'reflect-metadata';
-import * as TypeMoq from "typemoq";
+import * as TypeMoq from 'typemoq';
 import { Promise } from 'es6-promise';
-import { Db, Server, Collection, ObjectID } from "mongodb";
+import { Db, Server, Collection, ObjectID } from 'mongodb';
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
 
 import { LoginUser, GetMongoDB } from '../../lib/commands';
 import { Config, Account } from '../../lib/models';
 
-
-
 const expect = chai.expect;
 chai.use(chaiAsPromised);
-
 
 describe('Login user command', () => {
 
@@ -29,8 +26,7 @@ describe('Login user command', () => {
 
     describe('When calling exec()', () => {
         let account: Account;
-        let token: string;
-        let config = <Config>{ appSecret: "secret" };
+        let config = <Config>{ appSecret: 'secret' };
 
         beforeEach(() => {
 
@@ -58,7 +54,7 @@ describe('Login user command', () => {
         });
 
         it('should return user token', () => {
-            let command = new LoginUser(getMongoDb.object, config)
+            let command = new LoginUser(getMongoDb.object, config);
             command.account = account;
             return expect(command.exec()).to.eventually.be.ok;
         });

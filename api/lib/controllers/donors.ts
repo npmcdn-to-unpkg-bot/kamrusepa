@@ -78,7 +78,7 @@ export class DonorsController {
             donor.account = savedAccount._id;
             this._createDonor.donor = donor;
             return this._createDonor.exec().then(savedDonor => {
-                savedDonor.generetedPassword = password;
+                savedDonor.generatedPassword = password;
                 return Promise.resolve(savedDonor);
             });
         });

@@ -1,16 +1,14 @@
 /// <reference path="../../node_modules/typemoq/typemoq.d.ts" />
 import 'reflect-metadata';
-import * as TypeMoq from "typemoq";
+import * as TypeMoq from 'typemoq';
 import { Promise } from 'es6-promise';
-import { Db, Server, Collection, Cursor, ObjectID } from "mongodb";
+import { Db, Server, Collection, Cursor, ObjectID } from 'mongodb';
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
-import { Kernel } from 'inversify';
 
 import { QueryDonors } from '../../lib/queries';
 import { GetMongoDB } from '../../lib/commands';
 import { Donor, Location, BloodGroup } from '../../lib/models';
-import { TYPES } from '../../lib/types';
 
 const expect = chai.expect;
 chai.use(chaiAsPromised);
@@ -54,7 +52,7 @@ describe('Query donors', () => {
             }
 
             let collection = <Collection>{
-                find: (query) => cursor
+                find: (q) => cursor
             };
 
             db.setup(c => c.collection(TypeMoq.It.isAnyString())).returns(() => collection);
@@ -82,7 +80,7 @@ describe('Query donors', () => {
                 }
 
                 let collection = <Collection>{
-                    find: (query) => cursor
+                    find: (q) => cursor
                 };
 
                 db = TypeMoq.Mock.ofType(Db, TypeMoq.MockBehavior.Loose, 'dbname', server.object);

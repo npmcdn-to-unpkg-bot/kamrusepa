@@ -1,15 +1,12 @@
 /// <reference path="../../node_modules/typemoq/typemoq.d.ts" />
 import 'reflect-metadata';
-import * as TypeMoq from "typemoq";
+import * as TypeMoq from 'typemoq';
 import { Promise } from 'es6-promise';
-import { Db, Server, Collection, DeleteWriteOpResultObject, ObjectID } from "mongodb";
+import { Db, Server, Collection, DeleteWriteOpResultObject, ObjectID } from 'mongodb';
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
-import { Kernel } from 'inversify';
 
 import { DeleteDonor, GetMongoDB } from '../../lib/commands';
-import { Donor, Location, BloodGroup } from '../../lib/models';
-import { TYPES } from '../../lib/types';
 
 const expect = chai.expect;
 chai.use(chaiAsPromised);
@@ -53,11 +50,11 @@ describe('Delete donor command', () => {
         it('should return donor id', () => {
 
             command.donorId = donorId;
-            
+
             return expect(command.exec()).to.eventually.be.eq(donorId);
         });
 
-        
+
         describe('If donorid is undefined', () => {
 
             it('should be rejected', () => {

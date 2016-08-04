@@ -11,7 +11,7 @@ export class MapService {
   pointGraphicsLayer: GraphicsLayer;
   constructor(pointsModel: PointsModel) {
     this.map = new Map({
-      basemap: 'topo'
+      basemap: 'streets'
     });
     this.map.add(pointsModel.pointsLayer);
   }

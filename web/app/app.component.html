@@ -25,13 +25,9 @@
   </div>
   <main class="mdl-layout__content">
     <div class="page-content">
-      <esri-map #mapView (viewCreated)="onViewCreated()">
+      <esri-map #mapView [lat]="latitude" [long]="longitude" (viewCreated)="onViewCreated()">
       </esri-map>
-      <div style="margin-top:15px;">
-        <button (click)="onAddClicked()" style="width:150px;height:30px;">Add</button>
-        <button (click)="onClearClicked()" style="width:150px;height:30px;">Clear</button>
-      </div>
-      <attribute-display></attribute-display>
     </div>
   </main>
 </div>
+<new-donor></new-donor>

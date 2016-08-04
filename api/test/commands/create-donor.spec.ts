@@ -1,15 +1,13 @@
 /// <reference path="../../node_modules/typemoq/typemoq.d.ts" />
 import 'reflect-metadata';
-import * as TypeMoq from "typemoq";
+import * as TypeMoq from 'typemoq';
 import { Promise } from 'es6-promise';
-import { Db, Server, Collection, InsertOneWriteOpResult, ObjectID } from "mongodb";
+import { Db, Server, Collection, InsertOneWriteOpResult, ObjectID } from 'mongodb';
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
-import { Kernel } from 'inversify';
 
 import { CreateDonor, GetMongoDB } from '../../lib/commands';
 import { Donor, Location, BloodGroup } from '../../lib/models';
-import { TYPES } from '../../lib/types';
 
 const expect = chai.expect;
 chai.use(chaiAsPromised);
@@ -71,7 +69,6 @@ describe('Create donor command', () => {
             return expect(command.exec()).to.eventually.be.ok;
         });
 
-        
         it('should have an _id property', () => {
 
             command.donor = donor;
