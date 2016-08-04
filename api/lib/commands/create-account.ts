@@ -1,5 +1,4 @@
 import { injectable, inject } from 'inversify';
-import { MongoClient, Server, Db } from 'mongodb';
 import { Promise } from 'es6-promise';
 
 import { Command, GetMongoDB } from './';

@@ -5,6 +5,7 @@ import { Command, GetMongoDB } from './';
 
 import { TYPES } from '../types';
 import { Donor } from '../models';
+import { EventEmitter } from 'events';
 
 /**
  * CreateDonor
@@ -13,6 +14,7 @@ import { Donor } from '../models';
 export class CreateDonor implements Command {
     private _getMongoDB: GetMongoDB;
     private _donor: Donor;
+    private _emitter: EventEmitter;
 
     public get donor(): Donor {
         return this._donor;
@@ -26,6 +28,7 @@ export class CreateDonor implements Command {
      *
      */
     constructor( @inject(TYPES.GetMongoDB) getMongoDB: GetMongoDB) {
+        this._emitter = new EventEmitter();
         this._getMongoDB = getMongoDB;
     }
 
@@ -37,10 +40,17 @@ export class CreateDonor implements Command {
         return this._getMongoDB.exec().then(db => {
             return db.collection('donors').insert(this.donor)
                 .then((value) => {
-                    return Promise.resolve(value && value.ops && 0 < value.ops.length
+                    let donor = value && value.ops && 0 < value.ops.length
                         ? value.ops[0]
-                        : undefined);
+                        : undefined;
+
+                    this._emitter.emit('donor_created', donor);
+                    return Promise.resolve(donor);
                 });
         });
+    }
+
+    public on(event: string, listener: Function) {
+        this._emitter.on(event, listener);
     }
 }

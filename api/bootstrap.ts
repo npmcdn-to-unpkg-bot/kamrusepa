@@ -24,6 +24,7 @@ import { TYPES } from './lib/types';
 
 import { config } from './config';
 import { Config } from './lib/models';
+import { DonorsFeed } from './donors-feed';
 
 let controllers = new KernelModule((bind) => {
     bind<Controller>(TYPE.Controller).to(HomeController).whenTargetNamed(TAGS.HomeController);
@@ -38,15 +39,16 @@ let queries = new KernelModule((bind) => {
 
 let commands = new KernelModule((bind) => {
     bind<CreateAccount>(TYPES.CreateAccount).to(CreateAccount);
-    bind<CreateDonor>(TYPES.CreateDonor).to(CreateDonor);
-    bind<UpdateDonor>(TYPES.UpdateDonor).to(UpdateDonor);
-    bind<DeleteDonor>(TYPES.DeleteDonor).to(DeleteDonor);
+    bind<CreateDonor>(TYPES.CreateDonor).to(CreateDonor).inSingletonScope();
+    bind<UpdateDonor>(TYPES.UpdateDonor).to(UpdateDonor).inSingletonScope();
+    bind<DeleteDonor>(TYPES.DeleteDonor).to(DeleteDonor).inSingletonScope();
     bind<LoginUser>(TYPES.LoginUser).to(LoginUser);
 });
 
 let infra = new KernelModule((bind) => {
     bind<GetMongoDB>(TYPES.GetMongoDB).to(GetMongoDB);
     bind<Config>(TYPES.Config).toConstantValue(config);
+    bind<DonorsFeed>(TYPES.DonorsFeed).to(DonorsFeed).inSingletonScope();
 });
 
 export { controllers, queries, commands, infra }

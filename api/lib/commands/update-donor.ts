@@ -7,13 +7,16 @@ import { Command, GetMongoDB } from './';
 import { TYPES } from '../types';
 import { Donor } from '../models';
 
+import { EventEmitter } from 'events';
+
 /**
  * UpdateDonor
  */
 @injectable()
-export class UpdateDonor implements Command {
+export class UpdateDonor  implements Command {
     private _getMongoDB: GetMongoDB;
     private _donor: Donor;
+    private _emitter: EventEmitter;
 
     public get donor(): Donor {
         return this._donor;
@@ -27,6 +30,7 @@ export class UpdateDonor implements Command {
      *
      */
     constructor( @inject(TYPES.GetMongoDB) getMongoDB: GetMongoDB) {
+        this._emitter = new EventEmitter();
         this._getMongoDB = getMongoDB;
     }
 
@@ -40,10 +44,15 @@ export class UpdateDonor implements Command {
             return db.collection('donors').updateOne(query, this.donor)
                 .then((value: UpdateWriteOpResult) => {
                     if (value.result.ok) {
+                        this._emitter.emit('donor_updated', this.donor);
                         return Promise.resolve(this.donor);
                     }
                     Promise.reject('Donor was not updated.');
                 });
         });
+    }
+
+    public on(event: string, listener: Function) {
+        this._emitter.on(event, listener);
     }
 }

@@ -11,7 +11,8 @@
     "promises-a-plus": "registry:dt/promises-a-plus#0.0.0+20160317120654",
     "reflect-metadata": "registry:dt/reflect-metadata#0.0.0+20160630155503",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157",
-    "shortid": "registry:dt/shortid#0.0.0+20160316155526"
+    "shortid": "registry:dt/shortid#0.0.0+20160316155526",
+    "ws": "registry:dt/ws#0.0.0+20160724122153"
   },
   "dependencies": {
     "chai": "registry:npm/chai#3.5.0+20160723033700",

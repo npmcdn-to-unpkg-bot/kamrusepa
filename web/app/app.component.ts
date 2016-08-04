@@ -46,6 +46,15 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
       });
     });
+
+    let _ws = new WebSocket('ws://localhost:3000');
+    _ws.onopen = () => console.log('Connected.');
+    _ws.onclose = () => console.log('Disconnected.');
+    _ws.onmessage = (m: any) => {
+      console.log(m);
+      let json = JSON.parse(m.data);
+      console.log(json);
+    };
   }
 
   addPoint(donor: Donor) {

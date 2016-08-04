@@ -9,10 +9,17 @@ import * as jwt from 'express-jwt';
 import { commands, controllers, infra, queries } from './bootstrap';
 import { config } from './config';
 
+import { DonorsFeed } from './donors-feed';
+import { TYPES } from './lib/types';
+
+import * as http from 'http';
+
 let kernel = new Kernel();
 kernel.load(infra, commands, queries, controllers);
 
 let server = new InversifyExpressServer(kernel);
+
+let httpServer = http.createServer();
 
 server.setConfig((app) => {
 
@@ -39,8 +46,11 @@ server.setConfig((app) => {
                 }]
         }));
 
+   let feed: DonorsFeed = kernel.get<DonorsFeed>(TYPES.DonorsFeed);
+   feed.start(httpServer);
 });
 
 let app = server.build();
 
-app.listen(config.appPort);
+httpServer.on('request', app);
+httpServer.listen(config.appPort, () => console.log('Server started on ' + httpServer.address().address + ':' + httpServer.address().port));

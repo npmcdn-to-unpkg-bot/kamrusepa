@@ -8,5 +8,6 @@ export const TYPES = {
     UpdateDonor: Symbol('UpdateDonor'),
     DeleteDonor: Symbol('DeleteDonor'),
     GetDonor: Symbol('GertDonor'),
-    LoginUser: Symbol('LoginUser')
+    LoginUser: Symbol('LoginUser'),
+    DonorsFeed: Symbol('DonorsFeed'),
 };

@@ -39,8 +39,8 @@ export class NewDonorComponent implements OnInit {
 
     ngOnInit() { }
 
-    save() {
-        if (this.isValid()) {
+    save(form) {
+        if (this.isValid(form)) {
             this.donor.location = <Location>{ type: 'Point', coordinates: this.coordinates };
 
             this._ipService.get().subscribe((ip: string) => {
@@ -57,25 +57,15 @@ export class NewDonorComponent implements OnInit {
         }
     }
 
-    isValid() {
+    isValid(form) {
         this.errorMessages = <[string]>[];
-        if (!this.testEmail()) {
+        if (!form.controls.emailAddress.valid) {
            this.errorMessages.push('Email is invalid.');
         }
-        if (!this.testPhone()) {
+        if (!form.controls.contactNumber.valid) {
            this.errorMessages.push('Contact Number is invalid. Valid formats: +xx xxx xxxx xxx or 00xx xxx xxxx xxx');
         }
         return !this.errorMessages.length;
-    }
-
-    testEmail(): boolean {
-       let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-       return re.test(this.donor.email);
-    }
-
-    testPhone(): boolean {
-        let re = /^(00|\+)\d{2}\s\d{3}\s\d{4}\s\d{3}$/;
-       return re.test(this.donor.contactNumber);
     }
 
     close() {
