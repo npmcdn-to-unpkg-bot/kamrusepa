@@ -74,6 +74,8 @@ If you have docker and docker-compose installer you can run web and api using do
    ```bash
    docker-compose up web
    ```
+
+
 > If you are using docker on mac or windows and it is not the beta version. You probably will have to to change web/config/environment.ts.
 > Following variables:  
 >   baseUrl: 'http://localhost:3000/api' and  
