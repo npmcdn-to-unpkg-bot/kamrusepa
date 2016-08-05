@@ -2,10 +2,12 @@ version: '2'
 services:
   web:
     build: .
-    command: 'http-server'
+    command: 'npm start'
     working_dir: /app/user
+    volumes:
+        - ./:/app/user
     environment:
-      PORT: 8080
+      PORT: 3001
     ports:
-      - "8080:8080"
+      - "3001:3001"
   
