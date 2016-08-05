@@ -85,4 +85,4 @@ If you have docker and docker-compose installer you can run web and api using do
 > Should use your VM ip instead of locahost. 
 
 # Live version
-[http://kamrusepa.herokuapp.com/](http://kamrusepa.herokuapp.com/)
+[https://kamrusepa.herokuapp.com/](http://kamrusepa.herokuapp.com/)
