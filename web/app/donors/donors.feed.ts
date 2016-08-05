@@ -20,6 +20,7 @@ export class DonorsFeed extends Subject<FeedMessage<Donor>> {
     }
 
     start() {
+        
         this._ws = new WebSocket(url);
         this._ws.onopen = () => this.open();
         this._ws.onclose = () => this.close();

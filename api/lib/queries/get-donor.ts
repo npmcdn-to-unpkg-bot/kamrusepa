@@ -51,7 +51,7 @@ export class GetDonor implements Query<Promise<Donor>> {
                 if (this.id !== this.accountId) {
                     query.$and.push({_id: new ObjectID(this.id)});
                 }
-                console.log(query);
+
                 let donor: Donor = undefined;
 
                 db.collection('donors').find(query).limit(1).forEach((item) => {

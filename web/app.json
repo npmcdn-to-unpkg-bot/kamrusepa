@@ -1,0 +1,6 @@
+{
+  "name": "kamrusepa",
+  "description": "kamrusepa web ui",
+  "image": "heroku/nodejs",
+  "addons": []
+}
