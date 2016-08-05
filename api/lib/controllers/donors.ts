@@ -42,8 +42,9 @@ export class DonorsController {
 
     @Get('/:id')
     public get(request: Request) {
-
+        this._getDonor.accountId = (<any>request).user._id;
         this._getDonor.id = request.params.id;
+
         return this._getDonor.exec();
     }
 
@@ -54,7 +55,7 @@ export class DonorsController {
         }
 
         this._queryDonors.coordinates = [parseFloat(request.query.lat), parseFloat(request.query.long)] ;
-        this._queryDonors.distance = parseInt(request.query.distance, 10);
+        this._queryDonors.distance = parseFloat(request.query.distance);
 
         return this._queryDonors.exec();
     }
@@ -75,7 +76,7 @@ export class DonorsController {
 
         this._createAccount.account = account;
         return this._createAccount.exec().then(savedAccount => {
-            donor.account = savedAccount._id;
+            donor.account = savedAccount._id.toString();
             this._createDonor.donor = donor;
             return this._createDonor.exec().then(savedDonor => {
                 savedDonor.generatedPassword = password;
@@ -101,6 +102,7 @@ export class DonorsController {
          let id = request.params.id;
 
         this._deleteDonor.donorId = id;
+        
         return this._deleteDonor.exec();
     }
 }

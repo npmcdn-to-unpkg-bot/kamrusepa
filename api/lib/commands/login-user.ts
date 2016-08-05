@@ -44,7 +44,7 @@ export class LoginUser implements Command {
                     .update(this._account.password)
                     .digest('hex');
 
-                db.collection('users').findOne(this._account).then(user => {
+                db.collection('accounts').findOne(this._account).then(user => {
                     if (!user) {
                         return reject('invalid_account');
                     }

@@ -14,6 +14,7 @@ export class GetDonor implements Query<Promise<Donor>> {
 
     private _getMongo: GetMongoDB;
     private _id: string;
+    private _accountId: string;
 
     public get id(): string {
         return this._id;
@@ -21,6 +22,14 @@ export class GetDonor implements Query<Promise<Donor>> {
     public set id(v: string) {
         this._id = v;
     }
+
+    public get accountId(): string {
+        return this._accountId;
+    }
+    public set accountId(v: string) {
+        this._accountId = v;
+    }
+
 
     /**
      *
@@ -36,8 +45,13 @@ export class GetDonor implements Query<Promise<Donor>> {
         return new Promise<Donor>((resolver, reject) => {
             this._getMongo.exec().then((db: Db) => {
                 let query = {
-                    _id: new ObjectID(this.id)
+                    $and: <[any]>[{ account: this.accountId }]
                 };
+
+                if (this.id !== this.accountId) {
+                    query.$and.push({_id: new ObjectID(this.id)});
+                }
+                console.log(query);
                 let donor: Donor = undefined;
 
                 db.collection('donors').find(query).limit(1).forEach((item) => {
@@ -45,6 +59,9 @@ export class GetDonor implements Query<Promise<Donor>> {
                 }, (err) => {
                     if (err) {
                         return reject(err);
+                    }
+                    if (!donor) {
+                        return reject(undefined);
                     }
                     resolver(donor);
                 });

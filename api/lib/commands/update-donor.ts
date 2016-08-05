@@ -6,6 +6,7 @@ import { Command, GetMongoDB } from './';
 
 import { TYPES } from '../types';
 import { Donor } from '../models';
+import * as _ from 'lodash';
 
 import { EventEmitter } from 'events';
 
@@ -41,7 +42,9 @@ export class UpdateDonor  implements Command {
 
         return this._getMongoDB.exec().then(db => {
             let query = { _id: new ObjectID(this.donor._id) };
-            return db.collection('donors').updateOne(query, this.donor)
+            let tosave: any = _.omit(this.donor, '_id');
+
+            return db.collection('donors').updateOne(query, tosave)
                 .then((value: UpdateWriteOpResult) => {
                     if (value.result.ok) {
                         this._emitter.emit('donor_updated', this.donor);

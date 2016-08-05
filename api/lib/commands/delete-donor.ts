@@ -15,7 +15,7 @@ import { EventEmitter } from 'events';
 export class DeleteDonor implements Command {
     private _getMongoDB: GetMongoDB;
     private _donorId: string;
-    private _emitter: EventEmitter; 
+    private _emitter: EventEmitter;
 
     public get donorId(): string {
         return this._donorId;
@@ -41,10 +41,12 @@ export class DeleteDonor implements Command {
             let query = {
                 _id: new ObjectID(this.donorId)
             };
+
             return db.collection('donors').deleteOne(query)
                 .then((value: DeleteWriteOpResultObject) => {
-                    this._emitter.emit('donor_deleted', {_id: this.donorId});
+    
                     if (value.result.ok) {
+                        this._emitter.emit('donor_deleted', {_id: this.donorId});
                         return Promise.resolve(this.donorId);
                     }
                     return Promise.reject(`Cannot delete donor object #${this.donorId}.`);

@@ -13,6 +13,7 @@ export class PointsModel {
     this.points = this.pointsLayer.graphics;
   }
   addPoint(pointGraphic: Graphic) {
+    if (-1 !== this.points.indexOf(pointGraphic)) { return; }
     this.points.add(pointGraphic);
   }
 
@@ -30,6 +31,11 @@ export class PointsModel {
     });
 
     return result;
+  }
+
+  remove(query: any) {
+    let point = this.points.find((item) => item.attributes.id === query.id);
+    this.points.remove(point);
   }
 
   private toRadians(num: number) {

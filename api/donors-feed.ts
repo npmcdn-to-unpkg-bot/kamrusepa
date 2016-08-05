@@ -28,16 +28,22 @@ export class DonorsFeed {
 
             this._createDonor.on('donor_created', (arg) => {
                 console.log(`Donor #${arg._id} was created!`);
-                client.send(JSON.stringify({ type: 'donor_created', data: arg }), (err) => console.error(err));
+                client.send(JSON.stringify({ type: 'donor_created', data: arg }), (err) => this.handleError(err));
             });
             this._updateDonor.on('donor_updated', (arg) => {
                 console.log(`Donor #${arg._id} was updated!`);
-                client.send(JSON.stringify({ type: 'donor_updated', data: arg }), (err) => console.error(err));
+                client.send(JSON.stringify({ type: 'donor_updated', data: arg }), (err) => this.handleError(err));
             });
             this._deleteDonor.on('donor_deleted', (arg) => {
                 console.log(`Donor #${arg._id} was deleted!`);
-                client.send(JSON.stringify({ type: 'donor_deleted', data: arg }), (err) => console.error(err));
+                client.send(JSON.stringify({ type: 'donor_deleted', data: arg }), (err) => this.handleError(err));
             });
         });
+    }
+
+    handleError(err) {
+        if (err) {
+            console.error(err);
+        }
     }
 }

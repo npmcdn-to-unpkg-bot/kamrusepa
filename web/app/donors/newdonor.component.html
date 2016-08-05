@@ -5,7 +5,7 @@
 
             <div class="mdl-components__warning" *ngIf='errorMessages && errorMessages.length'>
                 <ul>
-                    <li *ngFor="#error of errorMessages">{{error}}</li>
+                    <li *ngFor="let error of errorMessages">{{error}}</li>
                 </ul>
             </div>
 

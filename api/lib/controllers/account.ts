@@ -22,13 +22,15 @@ export class AccountController {
         this._loginUser.account = <Account>{
             username: request.query.username || request.body.username,
             password: request.query.password || request.body.password,
-        }
+        };
+
         this._loginUser.exec()
             .then((token) => response.send(token))
             .catch(err => {
-                if (err === 'invalid_user') {
+                if (err === 'invalid_account') {
                     return response.status(401).send({ message: 'Invalid credentials.' });
                 }
+                console.error(err);
                 response.status(502).send(err.message || 'Server error.');
             });
     }

@@ -46,7 +46,7 @@ let commands = new KernelModule((bind) => {
 });
 
 let infra = new KernelModule((bind) => {
-    bind<GetMongoDB>(TYPES.GetMongoDB).to(GetMongoDB);
+    bind<GetMongoDB>(TYPES.GetMongoDB).to(GetMongoDB).inSingletonScope();
     bind<Config>(TYPES.Config).toConstantValue(config);
     bind<DonorsFeed>(TYPES.DonorsFeed).to(DonorsFeed).inSingletonScope();
 });

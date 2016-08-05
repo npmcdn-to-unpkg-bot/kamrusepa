@@ -5,6 +5,7 @@ import { MD_INPUT_DIRECTIVES } from '@angular2-material/input/input';
 import { MdButton } from '@angular2-material/button/button';
 import { MdCard } from '@angular2-material/card/card';
 import { MdCheckbox } from '@angular2-material/checkbox/checkbox';
+import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
 import { Donor,
     DonorsService,
@@ -35,7 +36,8 @@ export class NewDonorComponent implements OnInit {
 
 
     constructor(private _donorsService: DonorsService,
-    private _ipService: IpService) { }
+    private _ipService: IpService,
+    private _toaster: ToasterService) { }
 
     ngOnInit() { }
 
@@ -51,7 +53,7 @@ export class NewDonorComponent implements OnInit {
                    this.donorSavedComponent.open();
                 }, err => {
                     console.log(err);
-                    // TODO: Install toaster and display a message
+                    this._toaster.pop('error', 'Donor Creation', 'Profile not created. Failed to contact server.');
                 });
             });
         }

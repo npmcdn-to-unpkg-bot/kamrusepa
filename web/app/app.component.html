@@ -1,28 +1,37 @@
+<toaster-container></toaster-container>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title">kamrusepa</span>
+      <span class="mdl-layout-title"><a style="color: #ffffff" href="/">kamrusepa</a></span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-       </nav>
+      </nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
+    <span class="mdl-layout-title">kamrusepa</span>
     <nav class="mdl-navigation">
-      
+
     </nav>
   </div>
   <main class="mdl-layout__content">
     <div class="page-content">
-      <h1>Find blood donors near you!</h1>
-      <esri-map #mapView [lat]="latitude" [long]="longitude" (viewCreated)="onViewCreated()">
-      </esri-map>
-      <h4>Wanna be a blood donor. Just click on your location and fill the form : )</h4>
+      <router-outlet></router-outlet>
     </div>
   </main>
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+      <div class="mdl-logo">
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+          /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </div>
+    </div>
+    <div class="mdl-mini-footer__right-section">
+      {{status}}
+    </div>
+  </footer>
 </div>
-<new-donor></new-donor>
+

@@ -299,9 +299,12 @@ describe('Donors controller', () => {
         beforeEach(() => {
             let donorId: string = new ObjectID().toHexString();
 
-            request = <Request>{
+            request = <any>{
                 params: {
                     id: donorId
+                },
+                user: {
+                    _id: new ObjectID()
                 }
             };
 
@@ -332,9 +335,12 @@ describe('Donors controller', () => {
             beforeEach(() => {
                 let donorId = 'invalid-id';
 
-                request = <Request>{
+                request = <any>{
                     params: {
                         id: donorId
+                    },
+                    user: {
+                    _id: new ObjectID()
                     }
                 };
 
