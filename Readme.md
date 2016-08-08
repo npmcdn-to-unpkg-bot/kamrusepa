@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/kibiluzbad/kamrusepa/badges/gpa.svg)](https://codeclimate.com/github/kibiluzbad/kamrusepa) [![Coverage Status](https://coveralls.io/repos/github/kibiluzbad/kamrusepa/badge.svg?branch=master)](https://coveralls.io/github/kibiluzbad/kamrusepa?branch=master)
+
 # kamrusepa
 Develop a single page blood donation management system to facilitate the patients from all around the world, find blood donors near them. 
 
