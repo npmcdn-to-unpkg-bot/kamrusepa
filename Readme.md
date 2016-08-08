@@ -84,7 +84,7 @@ If you have docker and docker-compose installer you can run web and api using do
 >   baseUrl: 'http://localhost:3000/api' and  
 >   wsUrl: 'ws://localhost:3000'
 
-> Should use your VM ip instead of locahost. 
+> Should use your VM ip instead of localhost. 
 
 # Live version
 [https://kamrusepa.herokuapp.com/](https://kamrusepa.herokuapp.com/)
