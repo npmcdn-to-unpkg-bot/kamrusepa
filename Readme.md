@@ -5,14 +5,18 @@ Develop a single page blood donation management system to facilitate the patient
 
 ## Setup
  - Install node js (v6.3.0 or greater)
- - Update NPM 
+ - Update NPM
+
    ```bash
    npm update -g npm
    ```
+
  - Install global packages 
+ 
    ```bash
    npm install -g bower typings mocha tsc typescript ts-node gulp lite-server
    ```
+ 
 API
  - Inside code folder go to api folder (cd api)
    ```bash
