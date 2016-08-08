@@ -11,7 +11,8 @@
     "test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "typings": "typings"
+    "typings": "typings",
+    "serve": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -38,6 +39,8 @@
     "bootstrap": "^3.3.6",
     "core-js": "^2.4.0",
     "esri-system-js": "1.0.0-beta.0",
+    "express": "^4.14.0",
+    "express-history-api-fallback": "^2.0.0",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.27",
