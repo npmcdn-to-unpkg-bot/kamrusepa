@@ -2,7 +2,7 @@ version: '2'
 services:
   web:
     build: .
-    command: 'bash -c "tsc && http-server"'
+    command: 'bash -c "tsc && npm run serve"'
     working_dir: /app/user
     volumes:
         - ./:/app/user

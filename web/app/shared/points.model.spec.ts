@@ -30,8 +30,7 @@ describe('PointsModel tests', () => {
   describe('adding and removing points', () => {
     it('should add a point to collection', () => {
        pointsModel.addPoint(mockPointGraphic);
-       pointsModel.addPoint(mockPointGraphic);
-       expect(pointsModel.getPointGraphics().length).toEqual(2);
+       expect(pointsModel.getPointGraphics().length).toEqual(1);
     });
 
     it('should add points to collection', () => {
@@ -44,6 +43,14 @@ describe('PointsModel tests', () => {
       pointsModel.addPoint(mockPointGraphic);
       pointsModel.clear();
       expect(pointsModel.getPointGraphics().length).toEqual(0);
+    });
+
+    describe('adding same point', () => {
+      it('should not add same point again', () => {
+       pointsModel.addPoint(mockPointGraphic);
+       pointsModel.addPoint(mockPointGraphic);
+       expect(pointsModel.getPointGraphics().length).toEqual(1);
+    });
     });
   });
 
