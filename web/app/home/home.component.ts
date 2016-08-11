@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
     loadDonors() {
-        this._donorsService.query(this.latitude, this.latitude, this.distance)
+        this._donorsService.query(this.latitude, this.longitude, this.distance)
         .subscribe((donors) => {
             donors.forEach((donor: Donor) => {
                 this.addPoint(donor);
